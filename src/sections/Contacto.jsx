@@ -42,10 +42,7 @@ export default function Contacto() {
           className="space-y-14"
         >
           {/* TELEFONO */}
-          <motion.div
-            whileHover={{ scale: 1.03 }}
-            className="group transition"
-          >
+          <motion.div whileHover={{ scale: 1.03 }} className="group transition">
             <h3 className="text-2xl font-medium">Teléfono</h3>
             <a
               href="tel:+51999999999"
@@ -75,10 +72,7 @@ export default function Contacto() {
           </motion.div>
 
           {/* FACEBOOK */}
-          <motion.div
-            whileHover={{ scale: 1.03 }}
-            className="group transition"
-          >
+          <motion.div whileHover={{ scale: 1.03 }} className="group transition">
             <h3 className="text-2xl font-medium">Facebook</h3>
             <a
               href="https://facebook.com"
@@ -92,10 +86,7 @@ export default function Contacto() {
           </motion.div>
 
           {/* UBICACION TEXTO */}
-          <motion.div
-            whileHover={{ scale: 1.03 }}
-            className="group transition"
-          >
+          <motion.div whileHover={{ scale: 1.03 }} className="group transition">
             <h3 className="text-2xl font-medium">Ubicación</h3>
             <p className="mt-3 text-zinc-400 group-hover:text-white transition">
               Juliaca, Perú
@@ -111,14 +102,24 @@ export default function Contacto() {
           transition={{ duration: 0.9 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.02 }}
-          className="rounded-3xl overflow-hidden shadow-2xl"
+          className="relative rounded-3xl overflow-hidden shadow-2xl"
         >
           <iframe
             title="Ubicación"
-            src="https://www.google.com/maps?q=Juliaca,Peru&output=embed"
+            src="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295&z=17&output=embed"
             className="w-full h-[450px] border-0 grayscale hover:grayscale-0 transition duration-700"
             loading="lazy"
           />
+
+          {/* BOTON VER EN MAPS */}
+          <a
+            href="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-6 right-6 bg-white text-black px-5 py-2 rounded-full text-sm font-medium shadow-lg hover:scale-105 transition"
+          >
+            Ver en Google Maps
+          </a>
         </motion.div>
 
       </div>
