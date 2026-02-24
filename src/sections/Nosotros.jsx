@@ -11,40 +11,40 @@ export default function Nosotros() {
     { number: 8, label: "Colaboradores técnicos" },
   ];
 
-  const valores = [
+    const valores = [
     {
       title: "Compromiso",
-      image: "/images/valores/compromiso.jpg",
+      image: `${import.meta.env.BASE_URL}images/valores/compromiso.jpg`,
       description:
         "Nos involucramos en cada proyecto con responsabilidad total y enfoque en resultados duraderos.",
     },
     {
       title: "Precisión",
-      image: "/images/valores/precision.jpg",
+      image: `${import.meta.env.BASE_URL}images/valores/precision.jpg`,
       description:
         "Trabajamos con exactitud técnica en cada corte, soldadura y ensamblaje.",
     },
     {
       title: "Responsabilidad",
-      image: "/images/valores/responsabilidad.jpg",
+      image: `${import.meta.env.BASE_URL}images/valores/responsabilidad.jpg`,
       description:
         "Cumplimos tiempos y estándares industriales con seriedad profesional.",
     },
     {
       title: "Innovación",
-      image: "/images/valores/innovacion.jpg",
+      image: `${import.meta.env.BASE_URL}images/valores/innovacion.jpg`,
       description:
         "Integramos mejoras constantes en procesos y soluciones metálicas.",
     },
     {
       title: "Calidad",
-      image: "/images/valores/calidad.jpg",
+      image: `${import.meta.env.BASE_URL}images/valores/calidad.jpg`,
       description:
         "Materiales resistentes y acabados que garantizan larga duración.",
     },
     {
       title: "Disciplina Industrial",
-      image: "/images/valores/disciplina.jpg",
+      image: `${import.meta.env.BASE_URL}images/valores/disciplina.jpg`,
       description:
         "Orden, método y estructura en cada etapa de fabricación.",
     },
@@ -83,7 +83,7 @@ export default function Nosotros() {
           className="relative"
         >
           <video
-            src="/videos/taller.mp4"
+            src={`${import.meta.env.BASE_URL}videos/taller.mp4`}
             autoPlay
             muted
             loop
