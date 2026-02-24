@@ -11,7 +11,7 @@ export default function Servicios() {
         "Estructuras metálicas, puertas industriales, barandas y soluciones a medida.",
       fullText:
         "Desarrollamos estructuras metálicas personalizadas con altos estándares técnicos. Trabajamos con acero estructural, diseños reforzados y acabados industriales resistentes al desgaste.",
-      image: "/images/servicios/fabricacion.jpg",
+      image: `${import.meta.env.BASE_URL}images/servicios/fabricacion.jpg`,
     },
     {
       title: "Soldadura Especializada",
@@ -19,7 +19,7 @@ export default function Servicios() {
         "Procesos MIG, TIG y soldadura estructural de alta resistencia.",
       fullText:
         "Aplicamos técnicas profesionales de soldadura MIG, TIG y estructural garantizando uniones seguras, limpias y duraderas en cada proyecto industrial.",
-      image: "/images/servicios/soldadura.jpg",
+      image: `${import.meta.env.BASE_URL}images/servicios/soldadura.jpg`,
     },
     {
       title: "Mantenimiento Industrial",
@@ -27,7 +27,7 @@ export default function Servicios() {
         "Reparación y refuerzo de estructuras metálicas existentes.",
       fullText:
         "Ofrecemos mantenimiento preventivo y correctivo, reforzando estructuras y optimizando sistemas metálicos para prolongar su vida útil.",
-      image: "/images/servicios/mantenimiento.jpg",
+      image: `${import.meta.env.BASE_URL}images/servicios/mantenimiento.jpg`,
     },
     {
       title: "Diseño y Prototipado",
@@ -35,7 +35,7 @@ export default function Servicios() {
         "Soluciones personalizadas según requerimientos técnicos.",
       fullText:
         "Convertimos ideas en soluciones funcionales mediante diseño técnico, prototipado y desarrollo estructural adaptado a cada necesidad.",
-      image: "/images/servicios/diseno.jpg",
+      image: `${import.meta.env.BASE_URL}images/servicios/diseno.jpg`,
     },
   ];
 
