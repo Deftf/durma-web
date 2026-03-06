@@ -5,13 +5,11 @@ export default function Nosotros() {
   const [activeValue, setActiveValue] = useState(null);
 
   const stats = [
-    { number: 15, label: "Años de experiencia" },
-    { number: 250, label: "Proyectos realizados" },
-    { number: 120, label: "Clientes satisfechos" },
-    { number: 8, label: "Colaboradores técnicos" },
+    { number: 14, label: "Años de experiencia" },
+    { number: "80 t/mes", label: "Capacidad de proceso" },
   ];
 
-    const valores = [
+  const valores = [
     {
       title: "Compromiso",
       image: `${import.meta.env.BASE_URL}images/valores/compromiso.jpg`,
@@ -53,7 +51,7 @@ export default function Nosotros() {
   return (
     <section
       id="nosotros"
-      className="relative bg-zinc-950 text-white py-32 px-6 md:px-20 overflow-hidden"
+      className="bg-black text-white py-32 px-6 md:px-20"
     >
       {/* TITULO */}
       <motion.div
@@ -100,21 +98,28 @@ export default function Nosotros() {
           viewport={{ once: true }}
         >
           <h3 className="text-3xl font-medium">
-            Nuestra Historia
+            MISION
           </h3>
 
           <p className="mt-6 text-zinc-400 leading-relaxed">
-            MANUFACTURAS DE METAL DURMA E.I.R.L nace con el objetivo
-            de ofrecer soluciones metálicas confiables y resistentes.
-            Nuestra trayectoria se construye sobre disciplina técnica,
-            innovación constante y responsabilidad profesional.
+            Proveer soluciones integrales de fabricación y montaje de estructuras metálicas de alta
+            precisión para los sectores de industria, minería y construcción en la Región Puno. Nos
+            comprometemos a ejecutar proyectos con el más alto rigor técnico y estándares de
+            seguridad, calidad y medio ambiente; garantizando la continuidad operativa de nuestros
+            clientes a través de procesos certificados y mano de obra calificada.
           </p>
 
-          <p className="mt-4 text-zinc-400 leading-relaxed">
-            Cada proyecto es una estructura de confianza. Nos adaptamos
-            a diferentes requerimientos industriales garantizando
-            precisión y calidad en cada detalle.
+          <h3 className="mt-12 text-3xl font-medium">
+            VISION
+          </h3>
+
+          <p className="mt-6 text-zinc-400 leading-relaxed">
+            Ser reconocidos para el año 2030 como la empresa metalmecánica referente en la Región
+            Puno por nuestra capacidad técnica en proyectos de alta complejidad. Aspiramos a liderar
+            el mercado regional siendo el modelo a seguir en seguridad industrial y calidad operativa,
+            impulsando el desarrollo industrial y técnico de nuestra comunidad.
           </p>
+
         </motion.div>
       </div>
 
@@ -166,17 +171,14 @@ export default function Nosotros() {
               }
               className="relative rounded-2xl overflow-hidden cursor-pointer group"
             >
-              {/* Imagen */}
               <img
                 src={valor.image}
                 alt={valor.title}
                 className="absolute w-full h-full object-cover transition duration-700 group-hover:scale-110"
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition duration-500" />
 
-              {/* Contenido */}
               <div className="relative p-8 h-64 flex flex-col justify-center items-center text-center">
                 <h4 className="text-xl font-medium tracking-wide">
                   {valor.title}
@@ -189,7 +191,7 @@ export default function Nosotros() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.4 }}
-                      className="mt-4 text-sm text-zinc-300"
+                      className="mt-4 text-sm text-zinc-200"
                     >
                       {valor.description}
                     </motion.p>

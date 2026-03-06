@@ -6,56 +6,104 @@ export default function Servicios() {
 
   const servicios = [
     {
-      title: "Fabricación Metálica",
+      title: "Rolado de Planchas y Perfiles",
       description:
-        "Estructuras metálicas, puertas industriales, barandas y soluciones a medida.",
+        "Curvado y conformado de planchas y perfiles metálicos para estructuras industriales.",
       fullText:
-        "Desarrollamos estructuras metálicas personalizadas con altos estándares técnicos. Trabajamos con acero estructural, diseños reforzados y acabados industriales resistentes al desgaste.",
-      image: `${import.meta.env.BASE_URL}images/servicios/fabricacion.jpg`,
+        "Realizamos rolado de planchas y perfiles metálicos con precisión industrial, permitiendo fabricar piezas curvas, cilindros y componentes estructurales utilizados en proyectos metalmecánicos y de construcción.",
+      image: `${import.meta.env.BASE_URL}images/servicios/rolado.jpg`,
     },
     {
-      title: "Soldadura Especializada",
+      title: "Corte de Planchas",
       description:
-        "Procesos MIG, TIG y soldadura estructural de alta resistencia.",
+        "Corte de planchas de diferentes espesores mediante guillotina y oxicorte.",
       fullText:
-        "Aplicamos técnicas profesionales de soldadura MIG, TIG y estructural garantizando uniones seguras, limpias y duraderas en cada proyecto industrial.",
+        "Realizamos corte de planchas metálicas utilizando guillotina industrial y oxicorte, garantizando precisión dimensional y acabados adecuados para procesos posteriores de fabricación.",
+      image: `${import.meta.env.BASE_URL}images/servicios/corte-planchas.jpg`,
+    },
+    {
+      title: "Corte de Perfiles",
+      description:
+        "Corte preciso de perfiles estructurales para fabricación metálica.",
+      fullText:
+        "Ejecutamos corte de perfiles metálicos estructurales utilizados en proyectos industriales y de construcción, asegurando exactitud en medidas y optimización del material.",
+      image: `${import.meta.env.BASE_URL}images/servicios/corte-perfiles.jpg`,
+    },
+    {
+      title: "Plegado de Planchas",
+      description:
+        "Conformado de planchas metálicas mediante procesos de plegado industrial.",
+      fullText:
+        "Realizamos plegado de planchas metálicas para la fabricación de componentes estructurales, piezas industriales y elementos metálicos con geometrías específicas.",
+      image: `${import.meta.env.BASE_URL}images/servicios/plegado.jpg`,
+    },
+    {
+      title: "Perforación de Planchas",
+      description:
+        "Perforación de planchas metálicas con diferentes diámetros.",
+      fullText:
+        "Ejecutamos perforaciones precisas en planchas metálicas para procesos de ensamblaje, montaje estructural y fabricación de piezas industriales.",
+      image: `${import.meta.env.BASE_URL}images/servicios/perforacion.jpg`,
+    },
+    {
+      title: "Armado de Estructuras",
+      description:
+        "Fabricación y ensamblaje de estructuras metálicas industriales.",
+      fullText:
+        "Desarrollamos el armado de estructuras metálicas para proyectos industriales, mineros y de construcción, cumpliendo estándares técnicos y de seguridad.",
+      image: `${import.meta.env.BASE_URL}images/servicios/armado.jpg`,
+    },
+    {
+      title: "Montaje de Estructuras Metálicas",
+      description:
+        "Instalación y montaje de estructuras metálicas en obra.",
+      fullText:
+        "Realizamos el montaje de estructuras metálicas en campo, garantizando alineación estructural, seguridad operativa y cumplimiento de especificaciones técnicas.",
+      image: `${import.meta.env.BASE_URL}images/servicios/montaje.jpg`,
+    },
+    {
+      title: "Soldadura",
+      description:
+        "Soldadura estructural para proyectos metalmecánicos.",
+      fullText:
+        "Aplicamos procesos profesionales de soldadura estructural para garantizar uniones resistentes, duraderas y seguras en estructuras metálicas.",
       image: `${import.meta.env.BASE_URL}images/servicios/soldadura.jpg`,
     },
     {
-      title: "Mantenimiento Industrial",
+      title: "Importación de Maquinaria Amarilla",
       description:
-        "Reparación y refuerzo de estructuras metálicas existentes.",
+        "Gestión e importación de maquinaria pesada para minería y construcción.",
       fullText:
-        "Ofrecemos mantenimiento preventivo y correctivo, reforzando estructuras y optimizando sistemas metálicos para prolongar su vida útil.",
-      image: `${import.meta.env.BASE_URL}images/servicios/mantenimiento.jpg`,
+        "Ofrecemos servicio de importación de maquinaria amarilla para operaciones industriales, mineras y de construcción, gestionando equipos confiables y de alto rendimiento.",
+      image: `${import.meta.env.BASE_URL}images/servicios/maquinaria.jpg`,
     },
     {
-      title: "Diseño y Prototipado",
+      title: "Reconstrucción de Cucharas y Lampas",
       description:
-        "Soluciones personalizadas según requerimientos técnicos.",
+        "Reparación y reconstrucción de cucharas y lampas de maquinaria pesada.",
       fullText:
-        "Convertimos ideas en soluciones funcionales mediante diseño técnico, prototipado y desarrollo estructural adaptado a cada necesidad.",
-      image: `${import.meta.env.BASE_URL}images/servicios/diseno.jpg`,
+        "Realizamos reconstrucción, refuerzo y reparación de cucharas y lampas utilizadas en maquinaria pesada, prolongando su vida útil y optimizando su desempeño en campo.",
+      image: `${import.meta.env.BASE_URL}images/servicios/reconstruccion.jpg`,
     },
   ];
 
   return (
     <section
       id="servicios"
-      className="relative bg-black text-white py-32 px-6 md:px-20"
+      className="bg-black text-white py-32 px-6 md:px-20"
     >
       {/* TITULO */}
       <div className="max-w-4xl">
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
           Servicios
         </h2>
-        <p className="mt-6 text-zinc-400 text-lg">
+        <p className="mt-6 text-zinc-400 text-lg leading-relaxed">
           Soluciones industriales diseñadas para durar.
         </p>
       </div>
 
       {/* GRID */}
-      <div className="mt-24 grid md:grid-cols-2 gap-16">
+      <div className="mt-24 grid md:grid-cols-2 xl:grid-cols-3 gap-16">
         {servicios.map((servicio, i) => (
           <motion.div
             key={i}
@@ -92,7 +140,7 @@ export default function Servicios() {
       <AnimatePresence>
         {active !== null && (
           <motion.div
-            className="fixed inset-0 bg-black z-[999] flex items-center justify-center px-6"
+            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[999] flex items-center justify-center px-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -120,7 +168,7 @@ export default function Servicios() {
 
                 <button
                   onClick={() => setActive(null)}
-                  className="mt-10 px-6 py-3 border border-white rounded-full hover:bg-white hover:text-black transition"
+                  className="mt-10 px-6 py-3 border border-white rounded-full transition hover:bg-white hover:text-black"
                 >
                   Cerrar
                 </button>

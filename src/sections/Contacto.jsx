@@ -4,12 +4,12 @@ export default function Contacto() {
   return (
     <section
       id="contacto"
-      className="relative bg-black text-white py-32 px-6 md:px-20 overflow-hidden"
+      className="bg-black text-white py-32 px-6 md:px-20"
     >
       {/* FONDO DECORATIVO */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 bg-white blur-3xl rounded-full" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-zinc-600 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-zinc-700 blur-3xl rounded-full" />
       </div>
 
       {/* TITULO */}
@@ -45,10 +45,10 @@ export default function Contacto() {
           <motion.div whileHover={{ scale: 1.03 }} className="group transition">
             <h3 className="text-2xl font-medium">Teléfono</h3>
             <a
-              href="tel:+51999999999"
+              href="tel:+51931383988"
               className="mt-3 block text-zinc-400 text-lg transition group-hover:text-white"
             >
-              +51 999 999 999
+              +51 931 383 988
             </a>
             <div className="h-[1px] bg-zinc-800 mt-4 group-hover:bg-white transition" />
           </motion.div>
@@ -62,7 +62,7 @@ export default function Contacto() {
             <h3 className="text-2xl font-medium">WhatsApp</h3>
 
             <a
-              href="https://wa.me/51999999999"
+              href="https://wa.me/51931383988"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block px-8 py-4 bg-green-600 hover:bg-green-500 rounded-full text-white transition shadow-lg hover:shadow-green-600/40"
@@ -75,7 +75,7 @@ export default function Contacto() {
           <motion.div whileHover={{ scale: 1.03 }} className="group transition">
             <h3 className="text-2xl font-medium">Facebook</h3>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/profile.php?id=61588279504363&rdid=Azl19jvCGLRE8wsP&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16sKSkVUTq%2F#"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 block text-zinc-400 text-lg transition group-hover:text-white"
@@ -85,7 +85,7 @@ export default function Contacto() {
             <div className="h-[1px] bg-zinc-800 mt-4 group-hover:bg-white transition" />
           </motion.div>
 
-          {/* UBICACION TEXTO */}
+          {/* UBICACION */}
           <motion.div whileHover={{ scale: 1.03 }} className="group transition">
             <h3 className="text-2xl font-medium">Ubicación</h3>
             <p className="mt-3 text-zinc-400 group-hover:text-white transition">
@@ -111,7 +111,6 @@ export default function Contacto() {
             loading="lazy"
           />
 
-          {/* BOTON VER EN MAPS */}
           <a
             href="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295"
             target="_blank"
@@ -121,7 +120,6 @@ export default function Contacto() {
             Ver en Google Maps
           </a>
         </motion.div>
-
       </div>
 
       {/* CTA FINAL */}
@@ -137,7 +135,7 @@ export default function Contacto() {
         </h3>
 
         <motion.a
-          href="https://wa.me/51999999999"
+          href="https://wa.me/51931383988"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.07 }}

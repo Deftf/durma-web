@@ -26,7 +26,6 @@ export default function Hero() {
     offset: ["start start", "end end"],
   });
 
-  // Parallax suave y sin huecos negros
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "1%"]);
 
   useEffect(() => {
@@ -38,14 +37,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="relative w-full bg-black text-white">
-
+    <section
+      id="inicio"
+      className="relative w-full bg-black text-white"
+    >
       {/* ================= MOBILE ================= */}
       <div className="md:hidden">
-
-        {/* Imagen superior */}
         <div className="relative h-[60vh] overflow-hidden">
-
           <AnimatePresence mode="wait">
             <motion.img
               key={index}
@@ -61,7 +59,6 @@ export default function Hero() {
 
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* Texto sobre imagen */}
           <AnimatePresence mode="wait">
             <motion.div
               key={slides[index].text}
@@ -76,23 +73,24 @@ export default function Hero() {
               </p>
             </motion.div>
           </AnimatePresence>
-
         </div>
 
-        {/* Texto inferior */}
         <div className="px-6 py-16 space-y-16">
-
           <div className="flex items-center gap-4">
-
             <h1 className="text-2xl font-semibold leading-snug tracking-tight">
-              MANUFACTURAS DE METAL DURMA
+              MANUFACTURAS DE METAL DURMA - SERVICIOS PANCCA
             </h1>
           </div>
 
           <p className="text-zinc-400 leading-relaxed">
-            Precisión estructural. Solidez industrial.
-            Fabricamos soluciones metálicas para proyectos exigentes.
-          </p>
+            Somos una empresa peruana del sector metalmecánico con más de 14 años de
+            experiencia, constituida con la finalidad de atender la creciente demanda de soluciones
+            técnicas especializadas en la fabricación y el montaje de estructuras metálicas en la región
+            Puno. Su sede principal se encuentra en la ciudad de Juliaca. Lo que realmente define
+            nuestra propuesta de valor es nuestra capacidad instalada: actualmente somos el centro
+            de producción metalmecánica mejor equipado de la región, contando con maquinaria de
+            conformado CNC y sistemas hidráulicos de alta capacidad.
+                      </p>
 
           <div>
             <h2 className="text-xl font-medium">
@@ -112,15 +110,23 @@ export default function Hero() {
             </p>
           </div>
 
+          <div>
+            <h2 className="text-xl font-medium">
+              Compromiso y calidad
+            </h2>
+            <p className="mt-4 text-zinc-400 leading-relaxed">
+              Control en cada etapa del proceso productivo.
+            </p>
+          </div>
+
         </div>
       </div>
 
       {/* ================= DESKTOP ================= */}
-      <div className="hidden md:block">
-
-        {/* Lado izquierdo fijo */}
-        <div className="fixed left-0 top-0 w-1/2 h-screen overflow-hidden">
-
+      <div className="hidden md:flex">
+        
+        {/* Lado izquierdo STICKY */}
+        <div className="sticky top-0 w-1/2 h-screen overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.img
               key={index}
@@ -137,7 +143,6 @@ export default function Hero() {
 
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* Texto sobre imagen */}
           <AnimatePresence mode="wait">
             <motion.div
               key={slides[index].text}
@@ -156,27 +161,27 @@ export default function Hero() {
               </p>
             </motion.div>
           </AnimatePresence>
-
         </div>
 
         {/* Lado derecho scroll */}
         <div
           ref={containerRef}
-          className="md:ml-[50%] min-h-screen px-20 py-32 space-y-40"
+          className="w-1/2 min-h-screen px-20 py-32 space-y-40"
         >
-
           <div className="flex items-center gap-6">
-
             <h1 className="text-5xl font-semibold leading-[1.1] tracking-tight">
-              MANUFACTURAS DE METAL DURMA
+              MANUFACTURAS DE METAL DURMA - SERVICIOS PANCCA
             </h1>
-
           </div>
 
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
-            Precisión estructural. Solidez industrial.
-            Fabricamos soluciones metálicas que resisten el tiempo
-            y elevan el estándar de calidad.
+            Somos una empresa peruana del sector metalmecánico con más de 14 años de
+            experiencia, constituida con la finalidad de atender la creciente demanda de soluciones
+            técnicas especializadas en la fabricación y el montaje de estructuras metálicas en la región
+            Puno. Su sede principal se encuentra en la ciudad de Juliaca. Lo que realmente define
+            nuestra propuesta de valor es nuestra capacidad instalada: actualmente somos el centro
+            de producción metalmecánica mejor equipado de la región, contando con maquinaria de
+            conformado CNC y sistemas hidráulicos de alta capacidad.
           </p>
 
           <div>
@@ -207,7 +212,6 @@ export default function Hero() {
               Control en cada etapa del proceso productivo.
             </p>
           </div>
-
         </div>
 
       </div>

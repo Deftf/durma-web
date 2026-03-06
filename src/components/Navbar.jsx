@@ -50,8 +50,16 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] md:w-auto"
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-auto"
     >
+      {/* LOGO */}
+        <img
+          src={`${import.meta.env.BASE_URL}images/etc/logo.png`}
+          alt="logo"
+          className="absolute -top-6 left-1/2 -translate-x-1/2 z-10 h-12 md:h-14 pointer-events-none
+                    md:left-[-90px] md:top-1/2 md:-translate-x-0 md:-translate-y-1/2"
+        />
+
       <motion.div
         ref={containerRef}
         animate={{

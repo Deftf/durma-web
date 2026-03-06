@@ -4,7 +4,128 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: black;
+@layer base {
+  :root {
+    --bg-dark: 0 0% 6%;
+    --bg-soft: 0 0% 10%;
+
+    /* Azul Oxford */
+    --accent: 214 100% 13%;
+    --accent-soft: 214 100% 20%;
+
+    --text-primary: 0 0% 100%;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    @apply min-h-screen antialiased font-sans;
+    color: hsl(var(--text-primary));
+    background-color: hsl(var(--bg-dark)) !important;
+
+    /* Azul Oxford dominante */
+    background-image:
+      radial-gradient(
+        circle at 50% -20%,
+        hsl(var(--accent) / 0.55) 0%,
+        hsl(var(--accent-soft) / 0.35) 30%,
+        transparent 65%
+      ),
+      linear-gradient(
+        180deg,
+        hsl(var(--bg-soft)) 0%,
+        hsl(var(--bg-dark)) 100%
+      ) !important;
+
+    background-repeat: no-repeat;
+    background-size: 140% 120%, 100% 100%;
+    background-attachment: fixed;
+  }
+
+  /* ELIMINA fondos negros globales asesinos */
+  #root,
+  main,
+  section,
+  div[class*="bg-black"],
+  div[class*="bg-zinc"],
+  div[class*="bg-neutral"],
+  div[class*="bg-gray-9"],
+  div[class*="bg-slate"] {
+    background: transparent !important;
+  }
+
+  /* Texto siempre blanco */
+  h1, h2, h3, h4, p, span, a, li {
+    @apply font-semibold tracking-tight;
+    color: white;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+  }
+
+  /* Títulos grandes */
+  h2[class*="text-5"],
+  h2[class*="text-6"] {
+    background: linear-gradient(
+      90deg,
+      white,
+      hsl(var(--accent-soft)),
+      white
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Cards */
+  .card,
+  [class*="card"] {
+    background: hsl(var(--bg-soft) / 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--accent) / 0.2);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: hsl(var(--accent) / 0.4);
+    box-shadow: 0 10px 40px hsl(var(--accent) / 0.15);
+    transform: translateY(-4px);
+  }
+
+  /* Botones */
+  button,
+  [role="button"],
+  [class*="btn-"] {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(var(--accent-soft))
+    ) !important;
+
+    color: white !important;
+
+    border-radius: 0.8rem;
+    box-shadow: 0 6px 20px hsl(var(--accent) / 0.4);
+    transition: all 0.25s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px hsl(var(--accent-soft) / 0.5);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent) / 0.6);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent-soft));
+  }
 }
