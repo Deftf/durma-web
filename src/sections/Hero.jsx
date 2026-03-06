@@ -78,7 +78,7 @@ export default function Hero() {
         <div className="px-6 py-16 space-y-16">
           <div className="flex items-center gap-4">
             <h1 className="text-2xl font-semibold leading-snug tracking-tight">
-              MANUFACTURAS DE METAL DURMA - SERVICIOS PANCCA
+              MANUFACTURAS DE METAL DURMA SERVICIOS PANCCA
             </h1>
           </div>
 
@@ -170,7 +170,7 @@ export default function Hero() {
         >
           <div className="flex items-center gap-6">
             <h1 className="text-5xl font-semibold leading-[1.1] tracking-tight">
-              MANUFACTURAS DE METAL DURMA - SERVICIOS PANCCA
+              MANUFACTURAS DE METAL DURMA SERVICIOS PANCCA
             </h1>
           </div>
 

@@ -129,3 +129,6 @@ html {
     background: hsl(var(--accent-soft));
   }
 }
+html, body {
+  overflow-x: hidden;
+}
