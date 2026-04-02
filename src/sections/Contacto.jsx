@@ -1,150 +1,206 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function Contacto() {
+  const ref    = useRef(null);
+  const inView = useInView(ref, { margin: "-100px" });
+
   return (
     <section
       id="contacto"
-      className="bg-black text-white py-32 px-6 md:px-20"
+      className="relative py-32 px-6 md:px-20 overflow-hidden"
     >
-      {/* FONDO DECORATIVO */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-white blur-3xl rounded-full" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-zinc-700 blur-3xl rounded-full" />
-      </div>
-
       {/* TITULO */}
       <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        viewport={{ once: true }}
-        className="relative max-w-4xl"
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 80 }}
+        transition={{ duration: 1 }}
+        className="max-w-4xl"
       >
-        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
-          Contacto
-        </h2>
-
-        <p className="mt-6 text-zinc-400 text-lg leading-relaxed">
-          Estamos listos para desarrollar tu proyecto. Comunícate con nosotros
-          y recibe atención directa.
+        <h2 className="text-5xl md:text-6xl font-semibold">Contacto</h2>
+        <p className="mt-6 text-lg">
+          Estamos listos para construir algo serio contigo.
         </p>
       </motion.div>
 
-      {/* CONTENIDO PRINCIPAL */}
-      <div className="relative mt-24 grid md:grid-cols-2 gap-16 items-start">
+      {/* CONTENIDO */}
+      <div ref={ref} className="mt-32 grid md:grid-cols-2 gap-20 items-center">
 
-        {/* INFORMACION */}
+        {/* TARJETAS DE CONTACTO */}
         <motion.div
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true }}
-          className="space-y-14"
+          animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -120 }}
+          transition={{ duration: 1 }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-8"
         >
-          {/* TELEFONO */}
-          <motion.div whileHover={{ scale: 1.03 }} className="group transition">
-            <h3 className="text-2xl font-medium">Teléfono</h3>
-            <a
-              href="tel:+51931383988"
-              className="mt-3 block text-zinc-400 text-lg transition group-hover:text-white"
+          {[
+            {
+              title: "Teléfono",
+              value: "+51 931 383 988",
+              link: "tel:+51931383988",
+            },
+            {
+              title: "WhatsApp",
+              value: "Escribir ahora",
+              link: "https://wa.me/51931383988",
+              highlight: true,
+            },
+            {
+              title: "Facebook",
+              value: "Visitar página",
+              link: "https://www.facebook.com/",
+            },
+            {
+              title: "Ubicación",
+              value: "Juliaca, Perú",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -8, scale: 1.03 }}
+              style={{
+                background: "hsl(var(--bg-card) / 0.5)",
+                border: `1px solid hsl(var(--accent) / ${item.highlight ? "0.35" : "0.15"})`,
+                backdropFilter: "blur(8px)",
+                boxShadow: item.highlight
+                  ? "0 4px 20px hsl(var(--accent) / 0.15)"
+                  : "none",
+              }}
+              className="p-6 rounded-2xl"
             >
-              +51 931 383 988
-            </a>
-            <div className="h-[1px] bg-zinc-800 mt-4 group-hover:bg-white transition" />
-          </motion.div>
+              {/* Etiqueta pequeña */}
+              <h3
+                className="text-sm uppercase tracking-widest"
+                style={{ color: "hsl(var(--text-muted))" }}
+              >
+                {item.title}
+              </h3>
 
-          {/* WHATSAPP */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="transition"
-          >
-            <h3 className="text-2xl font-medium">WhatsApp</h3>
-
-            <a
-              href="https://wa.me/51931383988"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block px-8 py-4 bg-green-600 hover:bg-green-500 rounded-full text-white transition shadow-lg hover:shadow-green-600/40"
-            >
-              Enviar mensaje directo
-            </a>
-          </motion.div>
-
-          {/* FACEBOOK */}
-          <motion.div whileHover={{ scale: 1.03 }} className="group transition">
-            <h3 className="text-2xl font-medium">Facebook</h3>
-            <a
-              href="https://www.facebook.com/profile.php?id=61588279504363&rdid=Azl19jvCGLRE8wsP&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16sKSkVUTq%2F#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 block text-zinc-400 text-lg transition group-hover:text-white"
-            >
-              Visitar página oficial
-            </a>
-            <div className="h-[1px] bg-zinc-800 mt-4 group-hover:bg-white transition" />
-          </motion.div>
-
-          {/* UBICACION */}
-          <motion.div whileHover={{ scale: 1.03 }} className="group transition">
-            <h3 className="text-2xl font-medium">Ubicación</h3>
-            <p className="mt-3 text-zinc-400 group-hover:text-white transition">
-              Juliaca, Perú
-            </p>
-            <div className="h-[1px] bg-zinc-800 mt-4 group-hover:bg-white transition" />
-          </motion.div>
+              {item.link ? (
+                /* Links de contacto — NO son botones, se estilizan como links */
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block mt-3 text-xl hover:underline"
+                  style={{ color: "hsl(var(--text-primary))" }}
+                >
+                  {item.value}
+                </a>
+              ) : (
+                <p className="mt-3 text-xl">{item.value}</p>
+              )}
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* MAPA */}
         <motion.div
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.02 }}
-          className="relative rounded-3xl overflow-hidden shadow-2xl"
+          animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 120 }}
+          transition={{ duration: 1 }}
+          className="relative rounded-3xl overflow-hidden group h-[420px] md:h-[500px]"
         >
           <iframe
-            title="Ubicación"
             src="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295&z=17&output=embed"
-            className="w-full h-[450px] border-0 grayscale hover:grayscale-0 transition duration-700"
+            className="w-full h-full border-0 scale-110 group-hover:scale-100 transition duration-700"
             loading="lazy"
           />
 
+          <div
+            className="absolute inset-0 img-overlay group-hover:opacity-30 transition"
+          />
+
+          {/* Botón "Ver en Maps" — el global lo estiliza como btn primario */}
           <a
             href="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute bottom-6 right-6 bg-white text-black px-5 py-2 rounded-full text-sm font-medium shadow-lg hover:scale-105 transition"
+            className="absolute bottom-6 right-6 px-6 py-3 rounded-full text-sm"
           >
-            Ver en Google Maps
+            Ver en Maps
           </a>
         </motion.div>
       </div>
 
-      {/* CTA FINAL */}
+      {/* CTA */}
       <motion.div
-        className="relative mt-40 text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 60 }}
         transition={{ duration: 1 }}
-        viewport={{ once: true }}
+        className="mt-40 text-center"
       >
-        <h3 className="text-3xl md:text-4xl font-medium">
-          Hablemos de tu proyecto
-        </h3>
+        <h3 className="text-4xl">Hablemos de tu proyecto</h3>
 
-        <motion.a
+        {/* Botón CTA principal — el global lo estiliza */}
+        <a
           href="https://wa.me/51931383988"
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.07 }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-10 inline-block px-10 py-5 bg-white text-black rounded-full text-lg font-medium transition shadow-xl"
+          className="mt-10 inline-block px-12 py-5 rounded-full text-lg"
         >
           Solicitar Cotización
-        </motion.a>
+        </a>
       </motion.div>
+
+      {/* FOOTER */}
+      <footer
+        className="mt-40 pt-16"
+        style={{ borderTop: "1px solid hsl(var(--accent) / 0.2)" }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+
+          {/* MARCA */}
+          <div>
+            <h4 className="text-xl mb-4">Servicios Pancca</h4>
+            <ul className="space-y-2" style={{ color: "hsl(var(--text-muted))" }}>
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#nosotros">Nosotros</a></li>
+              <li><a href="#servicios">Servicios</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ul>
+          </div>
+
+          {/* CONTACTO */}
+          <div>
+            <h4 className="mb-4">Contacto</h4>
+            <ul className="space-y-2" style={{ color: "hsl(var(--text-muted))" }}>
+              <li><a href="tel:+51931383988">Telefono</a></li>
+              <li><a href="https://wa.me/51931383988" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295" target="_blank" rel="noopener noreferrer">Ubicación</a></li>
+            </ul>
+          </div>
+
+          {/* SERVICIOS */}
+          <div>
+            <h4 className="mb-4">Servicios</h4>
+            <ul className="space-y-2" style={{ color: "hsl(var(--text-muted))" }}>
+              <li>Rolado</li>
+              <li>Corte</li>
+              <li>Soldadura</li>
+              <li>Montaje</li>
+            </ul>
+          </div>
+
+          {/* CTA FOOTER */}
+          <div>
+            <h4 className="mb-4">&nbsp;</h4>
+            <a
+              href="https://wa.me/51931383988"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-5 py-3 rounded-full text-sm"
+            >
+              Cotizar ahora
+            </a>
+          </div>
+        </div>
+
+        <div
+          className="text-center mt-12"
+          style={{ color: "hsl(var(--text-muted))" }}
+        >
+          © {new Date().getFullYear()} Servicios Pancca
+        </div>
+      </footer>
     </section>
   );
 }

@@ -1,53 +1,76 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
-}
-
 @layer base {
   :root {
-    --bg-dark: 0 0% 6%;
-    --bg-soft: 0 0% 10%;
+    /* ─────────────────────────────────────────────────────────────
+       PALETA
+       Turquesa : rgb(32, 150, 166)  →  hsl(188 68% 39%)
+       Gris base: rgb(194, 203, 208) →  hsl(203 12% 79%)
+       Fondo usa un gris más oscuro y frío — entre el gris base y el
+       oscuro — para dar peso y seriedad sin llegar a negro.
+    ──────────────────────────────────────────────────────────── */
 
-    /* Azul Oxford */
-    --accent: 214 100% 13%;
-    --accent-soft: 214 100% 20%;
+    /* ── FONDOS ─────────────────────────────────────────────────── */
+    --bg-dark:  200 14% 22%;       /* gris azulado oscuro — fondo principal  */
+    --bg-soft:  200 13% 27%;       /* superficie — secciones / paneles       */
+    --bg-card:  200 15% 30%;       /* cards — ligeramente más claro          */
 
-    --text-primary: 0 0% 100%;
+    /* ── TURQUESA ──────────────────────────────────────────────── */
+    --tq:       188 68% 39%;       /* rgb(32,150,166) — turquesa puro        */
+    --tq-dark:  188 72% 28%;       /* turquesa oscuro — hover / énfasis      */
+    --tq-light: 188 55% 58%;       /* turquesa claro — accents suaves        */
+    --tq-pale:  188 40% 44%;       /* turquesa apagado — detalles sutiles    */
+    --tq-glow:  188 68% 39%;       /* alias para sombras turquesa            */
+
+    /* ── ALIAS sistema ─────────────────────────────────────────── */
+    --accent:      var(--tq);
+    --accent-soft: var(--tq-light);
+
+    /* ── BOTONES ───────────────────────────────────────────────── */
+    --btn-bg:       var(--tq);
+    --btn-bg-hover: var(--tq-dark);
+    --btn-text:     0 0% 98%;
+    --btn-border:   var(--tq-dark);
+
+    /* ── TEXTO ──────────────────────────────────────────────────── */
+    --text-primary: 188 20% 92%;   /* blanco frío — títulos              */
+    --text-body:    200 14% 76%;   /* gris claro azulado — cuerpo        */
+    --text-muted:   200 12% 55%;   /* gris medio — secundario / etiquetas */
+
+    /* ── IMÁGENES ───────────────────────────────────────────────── */
+    /*  Overlay oscuro-turquesa — integra fotos con el fondo oscuro  */
+    --img-overlay: hsl(200 20% 12% / 0.42);
+
+    /*  Fotos: oscurecidas levemente, frías, coherentes con el gris  */
+    --img-filter: brightness(0.88) saturate(0.72) hue-rotate(6deg);
   }
 
-  html, body {
-    height: 100%;
-  }
+  html, body { height: 100%; }
 
   body {
     @apply min-h-screen antialiased font-sans;
-    color: hsl(var(--text-primary));
+    color: hsl(var(--text-body));
     background-color: hsl(var(--bg-dark)) !important;
 
-    /* Azul Oxford dominante */
+    /* Fondo: gris oscuro sólido con resplandor turquesa muy sutil */
     background-image:
       radial-gradient(
-        circle at 50% -20%,
-        hsl(var(--accent) / 0.55) 0%,
-        hsl(var(--accent-soft) / 0.35) 30%,
-        transparent 65%
+        ellipse 60% 40% at 90% 8%,
+        hsl(188 60% 35% / 0.10) 0%,
+        transparent 100%
       ),
-      linear-gradient(
-        180deg,
-        hsl(var(--bg-soft)) 0%,
-        hsl(var(--bg-dark)) 100%
-      ) !important;
-
+      radial-gradient(
+        ellipse 50% 35% at 8% 92%,
+        hsl(188 55% 30% / 0.08) 0%,
+        transparent 100%
+      );
     background-repeat: no-repeat;
-    background-size: 140% 120%, 100% 100%;
+    background-size: 100% 100%;
     background-attachment: fixed;
   }
 
-  /* ELIMINA fondos negros globales asesinos */
-  #root,
-  main,
-  section,
+  /* ─── FONDOS TRANSPARENTES ─────────────────────────────────── */
+  #root, main, section,
   div[class*="bg-black"],
   div[class*="bg-zinc"],
   div[class*="bg-neutral"],
@@ -56,79 +79,195 @@ html {
     background: transparent !important;
   }
 
-  /* Texto siempre blanco */
-  h1, h2, h3, h4, p, span, a, li {
+  /* ─── TIPOGRAFÍA ────────────────────────────────────────────── */
+  h1, h2, h3 {
     @apply font-semibold tracking-tight;
-    color: white;
-    text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+    color: hsl(var(--text-primary)) !important;
   }
 
-  /* Títulos grandes */
+  h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+    color: hsl(var(--text-body)) !important;
+  }
+
+  p {
+    color: hsl(var(--text-body)) !important;
+  }
+
+  span, li {
+    color: hsl(var(--text-body));
+  }
+
+  a {
+    color: hsl(var(--tq-light));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: hsl(var(--tq));
+  }
+
+  /* Clases Tailwind de color → variables */
+  .text-muted,
+  [class*="text-gray"],
+  [class*="text-slate"],
+  [class*="text-zinc"],
+  [class*="text-neutral"],
+  [class*="text-white"] {
+    color: hsl(var(--text-body)) !important;
+  }
+
+  /* Títulos grandes — gradiente turquesa sobre oscuro */
   h2[class*="text-5"],
   h2[class*="text-6"] {
     background: linear-gradient(
-      90deg,
-      white,
-      hsl(var(--accent-soft)),
-      white
+      105deg,
+      hsl(var(--text-primary)) 0%,
+      hsl(var(--tq-light))     45%,
+      hsl(var(--text-primary)) 100%
     );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Cards */
+  /* ─── CARDS ─────────────────────────────────────────────────── */
   .card,
   [class*="card"] {
-    background: hsl(var(--bg-soft) / 0.65);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--accent) / 0.2);
+    background: hsl(var(--bg-card));
+    border: 1px solid hsl(var(--tq) / 0.20);
     border-radius: 1rem;
+    box-shadow:
+      0 0 0 1px hsl(var(--tq) / 0.06) inset,
+      0 4px 20px hsl(200 20% 8% / 0.35);
     transition: all 0.3s ease;
   }
 
-  .card:hover {
-    border-color: hsl(var(--accent) / 0.4);
-    box-shadow: 0 10px 40px hsl(var(--accent) / 0.15);
-    transform: translateY(-4px);
+  .card:hover,
+  [class*="card"]:hover {
+    border-color: hsl(var(--tq) / 0.42);
+    box-shadow:
+      0 0 0 1px hsl(var(--tq) / 0.12) inset,
+      0 0 20px hsl(var(--tq-glow) / 0.12),
+      0 8px 28px hsl(200 20% 8% / 0.45);
+    transform: translateY(-3px);
   }
 
-  /* Botones */
+  .card h1,.card h2,.card h3,
+  [class*="card"] h1,[class*="card"] h2,[class*="card"] h3 {
+    color: hsl(var(--text-primary)) !important;
+  }
+
+  .card p,.card span,.card li,
+  [class*="card"] p,[class*="card"] span,[class*="card"] li {
+    color: hsl(var(--text-body)) !important;
+  }
+
+  /* ─── BOTONES ────────────────────────────────────────────────── */
   button,
   [role="button"],
-  [class*="btn-"] {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--accent)),
-      hsl(var(--accent-soft))
-    ) !important;
-
-    color: white !important;
-
-    border-radius: 0.8rem;
-    box-shadow: 0 6px 20px hsl(var(--accent) / 0.4);
-    transition: all 0.25s ease;
+  [class*="btn-"],
+  [class*="bg-white"][class*="text-black"],
+  [class*="bg-white"][class*="rounded-full"] {
+    background: hsl(var(--btn-bg)) !important;
+    color: hsl(var(--btn-text)) !important;
+    border: 1px solid hsl(var(--tq-dark) / 0.55) !important;
+    border-radius: 0.65rem;
+    box-shadow:
+      0 1px 0 hsl(var(--tq-light) / 0.5) inset,
+      0 3px 14px hsl(188 65% 20% / 0.35);
+    transition: all 0.22s ease;
+    text-decoration: none !important;
+    letter-spacing: 0.01em;
   }
 
-  button:hover {
+  button:hover,
+  [role="button"]:hover,
+  [class*="bg-white"][class*="rounded-full"]:hover {
+    background: hsl(var(--btn-bg-hover)) !important;
+    color: hsl(var(--btn-text)) !important;
+    border-color: hsl(var(--tq) / 0.6) !important;
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px hsl(var(--accent-soft) / 0.5);
+    box-shadow:
+      0 1px 0 hsl(var(--tq-light) / 0.35) inset,
+      0 0 16px hsl(var(--tq-glow) / 0.25),
+      0 6px 20px hsl(188 65% 15% / 0.45);
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
+  /* Links con aspecto de botón */
+  a.btn-primary,
+  a[class*="rounded-full"][class*="px-"],
+  a[class*="rounded-full"][class*="bg-white"] {
+    background: hsl(var(--btn-bg)) !important;
+    color: hsl(var(--btn-text)) !important;
+    border: 1px solid hsl(var(--tq-dark) / 0.55) !important;
+    border-radius: 2rem;
+    box-shadow:
+      0 1px 0 hsl(var(--tq-light) / 0.5) inset,
+      0 3px 14px hsl(188 65% 20% / 0.35);
+    transition: all 0.22s ease;
+    display: inline-block;
+    text-decoration: none !important;
+  }
+
+  a.btn-primary:hover,
+  a[class*="rounded-full"][class*="px-"]:hover,
+  a[class*="rounded-full"][class*="bg-white"]:hover {
+    background: hsl(var(--btn-bg-hover)) !important;
+    color: hsl(var(--btn-text)) !important;
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 16px hsl(var(--tq-glow) / 0.25),
+      0 6px 20px hsl(188 65% 15% / 0.45);
+  }
+
+  /* ─── IMÁGENES ───────────────────────────────────────────────── */
+  img:not(.no-filter) {
+    filter: var(--img-filter);
+    transition: filter 0.45s ease;
+  }
+
+  .group:hover img:not(.no-filter),
+  img:not(.no-filter):hover {
+    filter: brightness(0.94) saturate(0.82) hue-rotate(3deg);
+  }
+
+  iframe {
+    filter: grayscale(0.5) brightness(0.75) saturate(0.55);
+    transition: filter 0.65s ease;
+  }
+
+  iframe:hover {
+    filter: grayscale(0) brightness(0.95) saturate(1);
+  }
+
+  /* ─── OVERLAY ────────────────────────────────────────────────── */
+  .img-overlay {
+    background: var(--img-overlay) !important;
+  }
+
+  /* ─── BORDES ─────────────────────────────────────────────────── */
+  hr,
+  [class*="border-zinc"],
+  [class*="border-white"],
+  [class*="border-black"] {
+    border-color: hsl(var(--tq) / 0.18) !important;
+  }
+
+  /* ─── SCROLLBAR ─────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 7px; }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--bg-soft));
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--accent) / 0.6);
-    border-radius: 10px;
+    background: hsl(var(--tq) / 0.40);
+    border-radius: 8px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--accent-soft));
+    background: hsl(var(--tq) / 0.70);
   }
-}
-html, body {
-  overflow-x: hidden;
 }

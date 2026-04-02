@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useState, useRef } from "react";
 
 export default function Servicios() {
   const [active, setActive] = useState(null);
@@ -10,173 +10,177 @@ export default function Servicios() {
       description:
         "Curvado y conformado de planchas y perfiles metálicos para estructuras industriales.",
       fullText:
-        "Realizamos rolado de planchas y perfiles metálicos con precisión industrial, permitiendo fabricar piezas curvas, cilindros y componentes estructurales utilizados en proyectos metalmecánicos y de construcción.",
+        "Realizamos rolado de planchas y perfiles metálicos con precisión industrial...",
       image: `${import.meta.env.BASE_URL}images/servicios/rolado.jpg`,
     },
     {
       title: "Corte de Planchas",
-      description:
-        "Corte de planchas de diferentes espesores mediante guillotina y oxicorte.",
-      fullText:
-        "Realizamos corte de planchas metálicas utilizando guillotina industrial y oxicorte, garantizando precisión dimensional y acabados adecuados para procesos posteriores de fabricación.",
+      description: "Corte de planchas de diferentes espesores...",
+      fullText: "Realizamos corte de planchas metálicas...",
       image: `${import.meta.env.BASE_URL}images/servicios/corte-planchas.jpg`,
     },
     {
       title: "Corte de Perfiles",
-      description:
-        "Corte preciso de perfiles estructurales para fabricación metálica.",
-      fullText:
-        "Ejecutamos corte de perfiles metálicos estructurales utilizados en proyectos industriales y de construcción, asegurando exactitud en medidas y optimización del material.",
+      description: "Corte preciso de perfiles estructurales...",
+      fullText: "Ejecutamos corte de perfiles metálicos...",
       image: `${import.meta.env.BASE_URL}images/servicios/corte-perfiles.jpg`,
     },
     {
       title: "Plegado de Planchas",
-      description:
-        "Conformado de planchas metálicas mediante procesos de plegado industrial.",
-      fullText:
-        "Realizamos plegado de planchas metálicas para la fabricación de componentes estructurales, piezas industriales y elementos metálicos con geometrías específicas.",
+      description: "Conformado de planchas metálicas...",
+      fullText: "Realizamos plegado de planchas metálicas...",
       image: `${import.meta.env.BASE_URL}images/servicios/plegado.jpg`,
     },
     {
       title: "Perforación de Planchas",
-      description:
-        "Perforación de planchas metálicas con diferentes diámetros.",
-      fullText:
-        "Ejecutamos perforaciones precisas en planchas metálicas para procesos de ensamblaje, montaje estructural y fabricación de piezas industriales.",
+      description: "Perforación de planchas metálicas...",
+      fullText: "Ejecutamos perforaciones precisas...",
       image: `${import.meta.env.BASE_URL}images/servicios/perforacion.jpg`,
     },
     {
       title: "Armado de Estructuras",
-      description:
-        "Fabricación y ensamblaje de estructuras metálicas industriales.",
-      fullText:
-        "Desarrollamos el armado de estructuras metálicas para proyectos industriales, mineros y de construcción, cumpliendo estándares técnicos y de seguridad.",
+      description: "Fabricación y ensamblaje...",
+      fullText: "Desarrollamos el armado de estructuras...",
       image: `${import.meta.env.BASE_URL}images/servicios/armado.jpg`,
     },
     {
       title: "Montaje de Estructuras Metálicas",
-      description:
-        "Instalación y montaje de estructuras metálicas en obra.",
-      fullText:
-        "Realizamos el montaje de estructuras metálicas en campo, garantizando alineación estructural, seguridad operativa y cumplimiento de especificaciones técnicas.",
+      description: "Instalación en obra...",
+      fullText: "Realizamos el montaje de estructuras...",
       image: `${import.meta.env.BASE_URL}images/servicios/montaje.jpg`,
     },
     {
       title: "Soldadura",
-      description:
-        "Soldadura estructural para proyectos metalmecánicos.",
-      fullText:
-        "Aplicamos procesos profesionales de soldadura estructural para garantizar uniones resistentes, duraderas y seguras en estructuras metálicas.",
+      description: "Soldadura estructural...",
+      fullText: "Aplicamos procesos profesionales...",
       image: `${import.meta.env.BASE_URL}images/servicios/soldadura.jpg`,
     },
     {
       title: "Importación de Maquinaria Amarilla",
-      description:
-        "Gestión e importación de maquinaria pesada para minería y construcción.",
-      fullText:
-        "Ofrecemos servicio de importación de maquinaria amarilla para operaciones industriales, mineras y de construcción, gestionando equipos confiables y de alto rendimiento.",
+      description: "Gestión e importación...",
+      fullText: "Ofrecemos servicio de importación...",
       image: `${import.meta.env.BASE_URL}images/servicios/maquinaria.jpg`,
     },
     {
       title: "Reconstrucción de Cucharas y Lampas",
-      description:
-        "Reparación y reconstrucción de cucharas y lampas de maquinaria pesada.",
-      fullText:
-        "Realizamos reconstrucción, refuerzo y reparación de cucharas y lampas utilizadas en maquinaria pesada, prolongando su vida útil y optimizando su desempeño en campo.",
+      description: "Reparación y reconstrucción...",
+      fullText: "Realizamos reconstrucción...",
       image: `${import.meta.env.BASE_URL}images/servicios/reconstruccion.jpg`,
     },
   ];
 
   return (
-    <section
-      id="servicios"
-      className="bg-black text-white py-32 px-6 md:px-20"
-    >
+    <section id="servicios" className="py-32 px-6 md:px-20 overflow-hidden">
+
       {/* TITULO */}
       <div className="max-w-4xl">
-        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
-          Servicios
-        </h2>
-        <p className="mt-6 text-zinc-400 text-lg leading-relaxed">
+        <h2 className="text-4xl md:text-5xl font-semibold">Servicios</h2>
+        <p className="mt-6 text-lg">
           Soluciones industriales diseñadas para durar.
         </p>
       </div>
 
-      {/* GRID */}
-      <div className="mt-24 grid md:grid-cols-2 xl:grid-cols-3 gap-16">
-        {servicios.map((servicio, i) => (
-          <motion.div
-            key={i}
-            layoutId={`card-${i}`}
-            className="relative group cursor-pointer"
-            onClick={() => setActive(i)}
-            whileHover={{ scale: 1.03 }}
-          >
-            <div className="overflow-hidden rounded-3xl">
-              <img
-                src={servicio.image}
-                alt={servicio.title}
-                className="w-full h-[420px] object-cover transition duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition duration-500" />
-            </div>
+      {/* LISTA */}
+      <div className="mt-32 space-y-40 md:space-y-48">
+        {servicios.map((servicio, i) => {
+          const ref    = useRef(null);
+          const inView = useInView(ref, { margin: "-100px" });
+          const isLeft = i % 2 === 0;
 
-            <div className="absolute bottom-8 left-8">
-              <h3 className="text-2xl font-semibold">
-                {servicio.title}
-              </h3>
-              <p className="mt-2 text-zinc-300 text-sm max-w-sm">
-                {servicio.description}
-              </p>
-              <span className="mt-4 inline-block text-sm tracking-widest border-b border-white">
-                VER MÁS
-              </span>
+          return (
+            <div ref={ref} key={i}>
+              <motion.div
+                className="grid md:grid-cols-2 gap-12 items-center"
+                animate={{
+                  opacity: inView ? 1 : 0,
+                  x: inView ? 0 : isLeft ? 250 : -250,
+                  scale: inView ? 1 : 0.92,
+                }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* TEXTO */}
+                <div className={`space-y-6 ${isLeft ? "md:order-1" : "md:order-2"}`}>
+                  <h3 className="text-3xl md:text-4xl font-semibold">
+                    {servicio.title}
+                  </h3>
+
+                  <p className="leading-relaxed">
+                    {servicio.description}
+                  </p>
+
+                  {/* Botón — el global lo estiliza automáticamente */}
+                  <button
+                    onClick={() => setActive(i)}
+                    className="px-5 py-2 rounded-full text-sm"
+                  >
+                    Ver más
+                  </button>
+                </div>
+
+                {/* IMAGEN */}
+                <motion.div
+                  className={`relative group ${isLeft ? "md:order-2" : "md:order-1"}`}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="overflow-hidden rounded-3xl">
+                    <img
+                      src={servicio.image}
+                      className="w-full h-[420px] object-cover transition duration-1000 group-hover:scale-125"
+                    />
+                    <div
+                      className="absolute inset-0 img-overlay transition group-hover:opacity-50"
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
             </div>
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* PANEL EXPANDIDO */}
-      <AnimatePresence>
-        {active !== null && (
+      {/* MODAL */}
+      {active !== null && (
+        <motion.div
+          className="fixed inset-0 backdrop-blur-md z-[999] flex items-center justify-center px-4"
+          style={{ background: "hsl(var(--bg-dark) / 0.85)" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           <motion.div
-            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[999] flex items-center justify-center px-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="relative w-full max-w-5xl h-[85vh] md:h-auto rounded-3xl overflow-hidden"
+            initial={{ y: 120, opacity: 0, scale: 0.9 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
           >
-            <motion.div
-              layoutId={`card-${active}`}
-              className="relative w-full max-w-6xl h-[80vh] rounded-3xl overflow-hidden"
-            >
-              <img
-                src={servicios[active].image}
-                alt=""
-                className="absolute w-full h-full object-cover"
-              />
+            <img
+              src={servicios[active].image}
+              className="absolute w-full h-full object-cover"
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: "hsl(var(--bg-dark) / 0.75)" }}
+            />
 
-              <div className="absolute inset-0 bg-black/70" />
+            <div className="relative p-6 md:p-16 max-w-3xl">
+              <h3 className="text-3xl md:text-4xl font-semibold">
+                {servicios[active].title}
+              </h3>
 
-              <div className="relative z-10 p-10 md:p-20 max-w-3xl">
-                <h3 className="text-4xl md:text-5xl font-semibold">
-                  {servicios[active].title}
-                </h3>
+              <p className="mt-6 leading-relaxed">
+                {servicios[active].fullText}
+              </p>
 
-                <p className="mt-8 text-lg text-zinc-300 leading-relaxed">
-                  {servicios[active].fullText}
-                </p>
-
-                <button
-                  onClick={() => setActive(null)}
-                  className="mt-10 px-6 py-3 border border-white rounded-full transition hover:bg-white hover:text-black"
-                >
-                  Cerrar
-                </button>
-              </div>
-            </motion.div>
+              {/* Botón cerrar — el global lo estiliza */}
+              <button
+                onClick={() => setActive(null)}
+                className="mt-10 px-6 py-3 rounded-full"
+              >
+                Cerrar
+              </button>
+            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      )}
     </section>
   );
 }
