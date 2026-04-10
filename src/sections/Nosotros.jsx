@@ -46,6 +46,16 @@ export default function Nosotros() {
       image: `${import.meta.env.BASE_URL}images/valores/innovacion.jpg`,
       description: "Mejora continua en procesos y soluciones.",
     },
+    {
+      title: "Seguridad",
+      image: `${import.meta.env.BASE_URL}images/valores/seguridad.jpg`,
+      description: "Protegemos a nuestro equipo y entorno en cada operación.",
+    },
+    {
+      title: "Calidad",
+      image: `${import.meta.env.BASE_URL}images/valores/calidad.jpg`,
+      description: "Cada estructura que entregamos supera los estándares exigidos.",
+    },
   ];
 
   return (
@@ -80,7 +90,6 @@ export default function Nosotros() {
             className="w-full h-[500px] object-cover"
           />
 
-          {/* Overlay controlado por variable */}
           <div className="absolute inset-0 img-overlay" />
 
           <motion.div
@@ -115,7 +124,6 @@ export default function Nosotros() {
               className="absolute w-full h-full object-cover transition duration-700"
             />
 
-            {/* Overlay semitransparente con variable */}
             <div
               className="absolute inset-0"
               style={{ background: "hsl(var(--bg-dark) / 0.55)" }}
@@ -130,7 +138,7 @@ export default function Nosotros() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="mt-4 px-6 text-sm"
+                    className="mt-4 px-6 text-sm font-semibold"
                   >
                     {item.text}
                   </motion.p>
@@ -157,8 +165,8 @@ export default function Nosotros() {
         ))}
       </div>
 
-      {/* VALORES */}
-      <div className="mt-32 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+      {/* VALORES — 6 cards en grid 2 cols móvil / 3 cols tablet+ */}
+      <div className="mt-32 grid grid-cols-2 md:grid-cols-3 gap-8">
         {valores.map((valor, i) => (
           <motion.div
             key={i}
@@ -175,18 +183,18 @@ export default function Nosotros() {
               className="absolute w-full h-full object-cover transition duration-700 group-hover:scale-110"
             />
 
-            {/* Overlay usando variable */}
             <div
               className="absolute inset-0 transition duration-500"
-              style={{ background: "hsl(var(--bg-dark) / 0.82)" }}
+              style={{ background: "hsl(var(--bg-dark) / 0.45)" }}
             />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 rounded-2xl"
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 rounded-2xl"
               style={{ border: "1px solid hsl(var(--accent) / 0.25)" }}
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
 
             <div className="relative h-full flex flex-col justify-center items-center text-center px-4">
-              <h4 className="text-lg font-semibold tracking-wide">
+              <h4 className="text-lg font-bold tracking-wide">
                 {valor.title}
               </h4>
 
@@ -197,7 +205,7 @@ export default function Nosotros() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="mt-3 text-sm"
+                    className="mt-3 text-sm font-semibold"
                   >
                     {valor.description}
                   </motion.p>

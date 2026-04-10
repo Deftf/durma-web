@@ -6,21 +6,22 @@
        PALETA
        Turquesa : rgb(32, 150, 166)  →  hsl(188 68% 39%)
        Gris base: rgb(194, 203, 208) →  hsl(203 12% 79%)
-       Fondo usa un gris más oscuro y frío — entre el gris base y el
-       oscuro — para dar peso y seriedad sin llegar a negro.
+
+       Fondo: gris MUY claro casi blanco, con tinte frío del gris base.
+       El turquesa domina en botones, accents, pill activo y detalles.
     ──────────────────────────────────────────────────────────── */
 
     /* ── FONDOS ─────────────────────────────────────────────────── */
-    --bg-dark:  200 14% 22%;       /* gris azulado oscuro — fondo principal  */
-    --bg-soft:  200 13% 27%;       /* superficie — secciones / paneles       */
-    --bg-card:  200 15% 30%;       /* cards — ligeramente más claro          */
+    --bg-dark:  205 18% 93%;       /* gris casi blanco frío — fondo principal */
+    --bg-soft:  205 15% 87%;       /* gris suave — paneles / secciones        */
+    --bg-card:  205 20% 99%;       /* blanco puro con tinte azul-frío         */
 
     /* ── TURQUESA ──────────────────────────────────────────────── */
-    --tq:       188 68% 39%;       /* rgb(32,150,166) — turquesa puro        */
-    --tq-dark:  188 72% 28%;       /* turquesa oscuro — hover / énfasis      */
-    --tq-light: 188 55% 58%;       /* turquesa claro — accents suaves        */
-    --tq-pale:  188 40% 44%;       /* turquesa apagado — detalles sutiles    */
-    --tq-glow:  188 68% 39%;       /* alias para sombras turquesa            */
+    --tq:       188 68% 39%;       /* rgb(32,150,166) turquesa principal       */
+    --tq-dark:  188 72% 28%;       /* turquesa oscuro — hover                  */
+    --tq-light: 188 52% 58%;       /* turquesa claro — accents                 */
+    --tq-pale:  188 45% 88%;       /* turquesa muy pálido — fondos suaves      */
+    --tq-glow:  188 68% 39%;       /* alias para sombras                       */
 
     /* ── ALIAS sistema ─────────────────────────────────────────── */
     --accent:      var(--tq);
@@ -29,20 +30,20 @@
     /* ── BOTONES ───────────────────────────────────────────────── */
     --btn-bg:       var(--tq);
     --btn-bg-hover: var(--tq-dark);
-    --btn-text:     0 0% 98%;
+    --btn-text:     0 0% 99%;
     --btn-border:   var(--tq-dark);
 
-    /* ── TEXTO ──────────────────────────────────────────────────── */
-    --text-primary: 188 20% 92%;   /* blanco frío — títulos              */
-    --text-body:    200 14% 76%;   /* gris claro azulado — cuerpo        */
-    --text-muted:   200 12% 55%;   /* gris medio — secundario / etiquetas */
+    /* ── TEXTO — oscuro sobre fondo claro ──────────────────────── */
+    --text-primary: 200 35% 14%;   /* casi negro azulado — títulos            */
+    --text-body:    200 20% 28%;   /* gris oscuro azulado — cuerpo            */
+    --text-muted:   203 14% 52%;   /* gris medio — etiquetas / secundario     */
 
-    /* ── IMÁGENES ───────────────────────────────────────────────── */
-    /*  Overlay oscuro-turquesa — integra fotos con el fondo oscuro  */
-    --img-overlay: hsl(200 20% 12% / 0.42);
+    /* ── IMÁGENES ──────────────────────────────────────────────── */
+    /* Overlay turquesa muy suave — integra fotos sin taparlas      */
+    --img-overlay: hsl(188 40% 30% / 0.22);
 
-    /*  Fotos: oscurecidas levemente, frías, coherentes con el gris  */
-    --img-filter: brightness(0.88) saturate(0.72) hue-rotate(6deg);
+    /* Filtro: fotos levemente frías, coherentes con paleta clara   */
+    --img-filter: brightness(1) saturate(1) hue-rotate(0deg);
   }
 
   html, body { height: 100%; }
@@ -52,16 +53,21 @@
     color: hsl(var(--text-body));
     background-color: hsl(var(--bg-dark)) !important;
 
-    /* Fondo: gris oscuro sólido con resplandor turquesa muy sutil */
+    /* Manchas turquesa muy pálidas en esquinas — dan vida sin romper el blanco */
     background-image:
       radial-gradient(
-        ellipse 60% 40% at 90% 8%,
-        hsl(188 60% 35% / 0.10) 0%,
+        ellipse 70% 50% at 95% 0%,
+        hsl(188 60% 82% / 0.40) 0%,
         transparent 100%
       ),
       radial-gradient(
-        ellipse 50% 35% at 8% 92%,
-        hsl(188 55% 30% / 0.08) 0%,
+        ellipse 55% 40% at 0% 100%,
+        hsl(188 50% 80% / 0.28) 0%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse 40% 30% at 50% 55%,
+        hsl(205 20% 88% / 0.50) 0%,
         transparent 100%
       );
     background-repeat: no-repeat;
@@ -99,13 +105,13 @@
   }
 
   a {
-    color: hsl(var(--tq-light));
+    color: hsl(var(--tq));
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   a:hover {
-    color: hsl(var(--tq));
+    color: hsl(var(--tq-dark));
   }
 
   /* Clases Tailwind de color → variables */
@@ -118,13 +124,13 @@
     color: hsl(var(--text-body)) !important;
   }
 
-  /* Títulos grandes — gradiente turquesa sobre oscuro */
+  /* Títulos grandes — gradiente turquesa sobre claro */
   h2[class*="text-5"],
   h2[class*="text-6"] {
     background: linear-gradient(
       105deg,
       hsl(var(--text-primary)) 0%,
-      hsl(var(--tq-light))     45%,
+      hsl(var(--tq))           48%,
       hsl(var(--text-primary)) 100%
     );
     background-clip: text;
@@ -136,21 +142,20 @@
   .card,
   [class*="card"] {
     background: hsl(var(--bg-card));
-    border: 1px solid hsl(var(--tq) / 0.20);
+    border: 1px solid hsl(var(--tq) / 0.16);
     border-radius: 1rem;
     box-shadow:
-      0 0 0 1px hsl(var(--tq) / 0.06) inset,
-      0 4px 20px hsl(200 20% 8% / 0.35);
+      0 2px 0 0 hsl(var(--tq) / 0.18),     /* línea turquesa superior */
+      0 4px 20px hsl(200 20% 30% / 0.08);
     transition: all 0.3s ease;
   }
 
   .card:hover,
   [class*="card"]:hover {
-    border-color: hsl(var(--tq) / 0.42);
+    border-color: hsl(var(--tq) / 0.36);
     box-shadow:
-      0 0 0 1px hsl(var(--tq) / 0.12) inset,
-      0 0 20px hsl(var(--tq-glow) / 0.12),
-      0 8px 28px hsl(200 20% 8% / 0.45);
+      0 2px 0 0 hsl(var(--tq) / 0.45),
+      0 8px 32px hsl(200 20% 25% / 0.13);
     transform: translateY(-3px);
   }
 
@@ -172,11 +177,11 @@
   [class*="bg-white"][class*="rounded-full"] {
     background: hsl(var(--btn-bg)) !important;
     color: hsl(var(--btn-text)) !important;
-    border: 1px solid hsl(var(--tq-dark) / 0.55) !important;
+    border: 1px solid hsl(var(--tq-dark) / 0.45) !important;
     border-radius: 0.65rem;
     box-shadow:
-      0 1px 0 hsl(var(--tq-light) / 0.5) inset,
-      0 3px 14px hsl(188 65% 20% / 0.35);
+      0 1px 0 hsl(var(--tq-light) / 0.55) inset,
+      0 3px 14px hsl(188 65% 25% / 0.25);
     transition: all 0.22s ease;
     text-decoration: none !important;
     letter-spacing: 0.01em;
@@ -187,12 +192,11 @@
   [class*="bg-white"][class*="rounded-full"]:hover {
     background: hsl(var(--btn-bg-hover)) !important;
     color: hsl(var(--btn-text)) !important;
-    border-color: hsl(var(--tq) / 0.6) !important;
+    border-color: hsl(var(--tq) / 0.55) !important;
     transform: translateY(-2px);
     box-shadow:
       0 1px 0 hsl(var(--tq-light) / 0.35) inset,
-      0 0 16px hsl(var(--tq-glow) / 0.25),
-      0 6px 20px hsl(188 65% 15% / 0.45);
+      0 6px 22px hsl(188 65% 20% / 0.32);
   }
 
   /* Links con aspecto de botón */
@@ -201,11 +205,11 @@
   a[class*="rounded-full"][class*="bg-white"] {
     background: hsl(var(--btn-bg)) !important;
     color: hsl(var(--btn-text)) !important;
-    border: 1px solid hsl(var(--tq-dark) / 0.55) !important;
+    border: 1px solid hsl(var(--tq-dark) / 0.45) !important;
     border-radius: 2rem;
     box-shadow:
-      0 1px 0 hsl(var(--tq-light) / 0.5) inset,
-      0 3px 14px hsl(188 65% 20% / 0.35);
+      0 1px 0 hsl(var(--tq-light) / 0.55) inset,
+      0 3px 14px hsl(188 65% 25% / 0.25);
     transition: all 0.22s ease;
     display: inline-block;
     text-decoration: none !important;
@@ -217,9 +221,7 @@
     background: hsl(var(--btn-bg-hover)) !important;
     color: hsl(var(--btn-text)) !important;
     transform: translateY(-2px);
-    box-shadow:
-      0 0 16px hsl(var(--tq-glow) / 0.25),
-      0 6px 20px hsl(188 65% 15% / 0.45);
+    box-shadow: 0 6px 22px hsl(188 65% 20% / 0.32);
   }
 
   /* ─── IMÁGENES ───────────────────────────────────────────────── */
@@ -230,16 +232,16 @@
 
   .group:hover img:not(.no-filter),
   img:not(.no-filter):hover {
-    filter: brightness(0.94) saturate(0.82) hue-rotate(3deg);
+    filter: brightness(0.97) saturate(0.86) hue-rotate(2deg);
   }
 
   iframe {
-    filter: grayscale(0.5) brightness(0.75) saturate(0.55);
+    filter: grayscale(0.45) brightness(0.92) saturate(0.62);
     transition: filter 0.65s ease;
   }
 
   iframe:hover {
-    filter: grayscale(0) brightness(0.95) saturate(1);
+    filter: grayscale(0) brightness(1) saturate(1);
   }
 
   /* ─── OVERLAY ────────────────────────────────────────────────── */
@@ -252,7 +254,7 @@
   [class*="border-zinc"],
   [class*="border-white"],
   [class*="border-black"] {
-    border-color: hsl(var(--tq) / 0.18) !important;
+    border-color: hsl(var(--tq) / 0.14) !important;
   }
 
   /* ─── SCROLLBAR ─────────────────────────────────────────────── */
@@ -263,11 +265,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--tq) / 0.40);
+    background: hsl(var(--tq) / 0.32);
     border-radius: 8px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--tq) / 0.70);
+    background: hsl(var(--tq) / 0.62);
   }
 }
