@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-/* ── Iconos SVG de marca ─────────────────────────────────────── */
 const IconPhone = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
     strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
@@ -27,12 +26,17 @@ const IconMaps = () => (
   <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
       fill="#EA4335"/>
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13V11.5A2.5 2.5 0 0112 9V2z"
-      fill="#34A853" opacity="0"/>
   </svg>
 );
 
-/* ── Colores de acento por tarjeta ───────────────────────────── */
+const IconEmail = () => (
+  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="none"
+    stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="3"/>
+    <polyline points="2,4 12,13 22,4"/>
+  </svg>
+);
+
 const cards = [
   {
     title: "Teléfono",
@@ -52,9 +56,17 @@ const cards = [
     highlight: true,
   },
   {
+    title: "Correo",
+    value: "serviciospanccaeirl@gmail.com",
+    link: "mailto:serviciospanccaeirl@gmail.com",
+    Icon: IconEmail,
+    color: "#EA4335",
+    glow:  "rgba(234,67,53,0.18)",
+  },
+  {
     title: "Facebook",
     value: "Visitar página",
-    link: "https://www.facebook.com/",
+    link: "https://www.facebook.com/friends/suggestions/?profile_id=61588279504363",
     Icon: IconFacebook,
     color: "#1877F2",
     glow:  "rgba(24,119,242,0.18)",
@@ -62,11 +74,24 @@ const cards = [
   {
     title: "Ubicación",
     value: "Juliaca, Perú",
-    link: "https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295",
+    link: "https://www.google.com/maps?q=-15.53926689730432, -70.1123940542245",
     Icon: IconMaps,
     color: "#EA4335",
     glow:  "rgba(234,67,53,0.18)",
   },
+];
+
+const serviciosFooter = [
+  "Rolado de Planchas y Perfiles",
+  "Plegado de Planchas",
+  "Corte en Guillotina / Cizalla",
+  "Oxicorte y Punzonado",
+  "Soldadura (MIG, TIG, SMAW)",
+  "Arenado y Pintado Epóxico",
+  "Armado y Montaje de Estructuras",
+  "Reconstrucción de Cucharones",
+  "Servicio de Grúa",
+  "Importación de Maquinaria",
 ];
 
 export default function Contacto() {
@@ -98,13 +123,13 @@ export default function Contacto() {
         <motion.div
           animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -120 }}
           transition={{ duration: 1 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
         >
           {cards.map((item, i) => (
             <motion.a
               key={i}
               href={item.link}
-              target={item.link.startsWith("http") ? "_blank" : undefined}
+              target={item.link.startsWith("http") || item.link.startsWith("mailto") ? "_blank" : undefined}
               rel="noopener noreferrer"
               whileHover={{ y: -8, scale: 1.03 }}
               style={{
@@ -117,12 +142,9 @@ export default function Contacto() {
               }}
               className="p-6 rounded-2xl flex flex-col gap-4 cursor-pointer"
             >
-              {/* Icono con color de marca */}
               <div style={{ color: item.color }}>
                 <item.Icon />
               </div>
-
-              {/* Etiqueta */}
               <div>
                 <h3
                   className="text-sm uppercase tracking-widest"
@@ -130,7 +152,7 @@ export default function Contacto() {
                 >
                   {item.title}
                 </h3>
-                <p className="mt-1 text-xl" style={{ color: "hsl(var(--text-primary))" }}>
+                <p className="mt-1 text-base break-all" style={{ color: "hsl(var(--text-primary))" }}>
                   {item.value}
                 </p>
               </div>
@@ -145,13 +167,13 @@ export default function Contacto() {
           className="relative rounded-3xl overflow-hidden group h-[420px] md:h-[500px]"
         >
           <iframe
-            src="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295&z=17&output=embed"
+            src="https://www.google.com/maps?q=-15.53926689730432, -70.1123940542245&z=17&output=embed"
             className="w-full h-full border-0 scale-110 group-hover:scale-100 transition duration-700"
             loading="lazy"
           />
           <div className="absolute inset-0 img-overlay group-hover:opacity-30 transition" />
           <a
-            href="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295"
+            href="https://www.google.com/maps?q=-15.53926689730432, -70.1123940542245"
             target="_blank"
             rel="noopener noreferrer"
             className="absolute bottom-6 right-6 px-6 py-3 rounded-full text-sm"
@@ -184,35 +206,76 @@ export default function Contacto() {
         style={{ borderTop: "1px solid hsl(var(--accent) / 0.2)" }}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm">
+
+          {/* COL 1 — Marca */}
           <div>
-            <h4 className="text-xl mb-4">Servicios Pancca</h4>
-            <ul className="space-y-2" style={{ color: "hsl(var(--text-muted))" }}>
+            <h4 className="text-xl font-semibold mb-4">Servicios Pancca</h4>
+            <p className="mb-4 leading-relaxed" style={{ color: "hsl(var(--text-muted))" }}>
+              Empresa metalmecánica con más de 14 años de experiencia en fabricación,
+              montaje y mantenimiento de estructuras metálicas en la Región Puno.
+            </p>
+            <ul className="space-y-1" style={{ color: "hsl(var(--text-muted))" }}>
               <li><a href="#inicio">Inicio</a></li>
               <li><a href="#nosotros">Nosotros</a></li>
               <li><a href="#servicios">Servicios</a></li>
               <li><a href="#contacto">Contacto</a></li>
             </ul>
           </div>
+
+          {/* COL 2 — Servicios */}
           <div>
-            <h4 className="mb-4">Contacto</h4>
-            <ul className="space-y-2" style={{ color: "hsl(var(--text-muted))" }}>
-              <li><a href="tel:+51931383988">Telefono</a></li>
-              <li><a href="https://wa.me/51931383988" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-              <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-              <li><a href="https://www.google.com/maps?q=-15.539105039957803,-70.11218421652295" target="_blank" rel="noopener noreferrer">Ubicación</a></li>
+            <h4 className="font-semibold mb-4">Nuestros Servicios</h4>
+            <ul className="space-y-1" style={{ color: "hsl(var(--text-muted))" }}>
+              {serviciosFooter.map((s, i) => (
+                <li key={i}><a href="#servicios">{s}</a></li>
+              ))}
             </ul>
           </div>
+
+          {/* COL 3 — Contacto */}
           <div>
-            <h4 className="mb-4">Servicios</h4>
-            <ul className="space-y-2" style={{ color: "hsl(var(--text-muted))" }}>
-              <li>Rolado</li>
-              <li>Corte</li>
-              <li>Soldadura</li>
-              <li>Montaje</li>
+            <h4 className="font-semibold mb-4">Contacto</h4>
+            <ul className="space-y-3" style={{ color: "hsl(var(--text-muted))" }}>
+              <li>
+                <a href="tel:+51931383988" className="block">
+                  <span className="font-semibold block">Teléfono</span>
+                  +51 931 383 988
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/51931383988" target="_blank" rel="noopener noreferrer" className="block">
+                  <span className="font-semibold block">WhatsApp</span>
+                  +51 931 383 988
+                </a>
+              </li>
+              <li>
+                <a href="mailto:serviciospanccaeirl@gmail.com" target="_blank" rel="noopener noreferrer" className="block">
+                  <span className="font-semibold block">Correo</span>
+                  serviciospanccaeirl@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/friends/suggestions/?profile_id=61588279504363" target="_blank" rel="noopener noreferrer" className="block">
+                  <span className="font-semibold block">Facebook</span>
+                  Servicios Pancca
+                </a>
+              </li>
+              <li>
+                <span className="font-semibold block">Ubicación</span>
+                Juliaca, Puno — Perú
+              </li>
             </ul>
           </div>
+
+          {/* COL 4 — Stats y CTA */}
           <div>
-            <h4 className="mb-4">&nbsp;</h4>
+            <h4 className="font-semibold mb-4">¿Por qué nosotros?</h4>
+            <ul className="space-y-3 mb-6" style={{ color: "hsl(var(--text-muted))" }}>
+              <li><span className="font-bold" style={{ color: "hsl(var(--accent))" }}>14</span> años de experiencia</li>
+              <li><span className="font-bold" style={{ color: "hsl(var(--accent))" }}>80 t/mes</span> capacidad de proceso</li>
+              <li><span className="font-bold" style={{ color: "hsl(var(--accent))" }}>+10</span> servicios especializados</li>
+              <li><span className="font-bold" style={{ color: "hsl(var(--accent))" }}>+10</span> máquinas propias</li>
+            </ul>
             <a
               href="https://wa.me/51931383988"
               target="_blank"
@@ -223,8 +286,15 @@ export default function Contacto() {
             </a>
           </div>
         </div>
-        <div className="text-center mt-12" style={{ color: "hsl(var(--text-muted))" }}>
-          © {new Date().getFullYear()} Servicios Pancca
+
+        <div
+          className="text-center mt-12 pt-8 text-xs"
+          style={{
+            borderTop: "1px solid hsl(var(--accent) / 0.1)",
+            color: "hsl(var(--text-muted))",
+          }}
+        >
+          © {new Date().getFullYear()} Servicios Pancca E.I.R.L. — Juliaca, Puno, Perú
         </div>
       </footer>
     </section>
