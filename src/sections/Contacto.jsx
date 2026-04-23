@@ -45,6 +45,7 @@ const cards = [
     Icon: IconPhone,
     color: "hsl(188 68% 39%)",
     glow:  "hsl(188 68% 39% / 0.18)",
+    highlight: true,
   },
   {
     title: "WhatsApp",
@@ -62,6 +63,7 @@ const cards = [
     Icon: IconEmail,
     color: "#EA4335",
     glow:  "rgba(234,67,53,0.18)",
+    highlight: true,
   },
   {
     title: "Facebook",
@@ -70,6 +72,7 @@ const cards = [
     Icon: IconFacebook,
     color: "#1877F2",
     glow:  "rgba(24,119,242,0.18)",
+    highlight: true,
   },
   {
     title: "Ubicación",
@@ -78,6 +81,7 @@ const cards = [
     Icon: IconMaps,
     color: "#EA4335",
     glow:  "rgba(234,67,53,0.18)",
+    highlight: true,
   },
 ];
 
@@ -110,7 +114,14 @@ export default function Contacto() {
         transition={{ duration: 1 }}
         className="max-w-4xl"
       >
-        <h2 className="text-5xl md:text-6xl font-semibold">Contacto</h2>
+        <h2 className="text-5xl md:text-6xl font-semibold"
+            style={{
+      background: "linear-gradient(105deg, hsl(var(--tq-dark)) 0%, hsl(var(--tq-light)) 50%, hsl(var(--tq-dark)) 100%)",
+      backgroundClip: "text",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}
+        >Contacto</h2>
         <p className="mt-6 text-lg">
           Estamos listos para construir algo serio contigo.
         </p>

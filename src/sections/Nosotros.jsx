@@ -67,7 +67,15 @@ export default function Nosotros() {
         viewport={{ once: true }}
         className="max-w-4xl"
       >
-        <h2 className="text-5xl font-semibold">Nosotros</h2>
+        <h2 
+    className="text-5xl font-semibold"
+    style={{
+      background: "linear-gradient(105deg, hsl(var(--tq-dark)) 0%, hsl(var(--tq-light)) 50%, hsl(var(--tq-dark)) 100%)",
+      backgroundClip: "text",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}
+      >Nosotros</h2>
         <p className="mt-6 text-lg text-justify">
           Somos una empresa peruana del sector metalmecánico con más de 14 años de experiencia,
           constituida con la finalidad de atender la creciente demanda de soluciones técnicas
@@ -136,8 +144,13 @@ export default function Nosotros() {
             }}
           >
             <h3
-              className="text-2xl font-black uppercase mb-4"
-              style={{ color: "hsl(var(--accent))" }}
+              className="text-2xl font-bold uppercase mb-4 text-center"
+              style={{
+                background: "linear-gradient(105deg, hsl(var(--tq-dark)) 0%, hsl(var(--tq-light)) 50%, hsl(var(--tq-dark)) 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
             >
               {item.title}
             </h3>
@@ -159,7 +172,15 @@ export default function Nosotros() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h4 className="text-5xl md:text-6xl font-bold">{stat.number}</h4>
+            <h4
+              className="text-5xl md:text-6xl font-bold"
+              style={{
+                background: "linear-gradient(105deg, hsl(var(--tq-dark)) 0%, hsl(var(--tq-light)) 50%, hsl(var(--tq-dark)) 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >{stat.number}</h4>
             <p className="mt-2 text-sm md:text-base">{stat.label}</p>
           </motion.div>
         ))}

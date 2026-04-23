@@ -1,10 +1,5 @@
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 import metal1 from "../assets/hero/metal1.jpg";
 import metal2 from "../assets/hero/metal2.jpg";
@@ -24,15 +19,6 @@ const slides = [
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
-  const containerRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const scaleImg = useTransform(scrollYProgress, [0, 1], [1, 1.3]);
-  const yImg     = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   useEffect(() => {
     slides.forEach((slide) => {
@@ -46,60 +32,71 @@ export default function Hero() {
   }, []);
 
   return (
+    /*
+      Sin sticky, sin 200vh, sin parallax scale/y.
+      El section ocupa exactamente 100svh (lo visible).
+      En desktop: padding-top = --navbar-h para que la imagen
+      arranque justo debajo del navbar sin solaparse.
+      Sin ningún espacio extra → sin barrita gris.
+    */
     <section
       id="inicio"
-      ref={containerRef}
-      className="relative w-full h-[200vh]"
+      className="on-image relative w-full overflow-hidden"
+      style={{
+        height: "100svh",
+        paddingTop: "var(--navbar-h, 0px)",
+      }}
     >
-      {/* on-image → CSS global mantiene todo blanco dentro */}
-      <motion.div className="on-image sticky top-0 h-screen w-full overflow-hidden">
+      {/* IMÁGENES — fade entre slides, tono original */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={slides[index].img}
+          alt="Metalurgia"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className="no-filter absolute bottom-0 left-0 right-0 w-full object-cover"
+          style={{ 
+            height: "calc(100svh - var(--navbar-h, 0px))", // La imagen mide el total menos el navbar
+            top: "var(--navbar-h, 0px)" // Empieza exactamente donde termina el navbar
+          }}
+        />
+      </AnimatePresence>
 
-        {/* IMAGEN — no-filter: tono original sin filtro de color */}
+      {/* OVERLAY oscuro para contraste */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 img-overlay" 
+        style={{ top: "var(--navbar-h, 0px)" }} 
+      />
+
+      {/* TEXTO CENTRAL */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-4 text-center pointer-events-none">
         <AnimatePresence mode="wait">
-          <motion.img
+          <motion.div
             key={index}
-            src={slides[index].img}
-            alt="Metalurgia"
-            style={{ scale: scaleImg, y: yImg }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="no-filter absolute inset-0 w-full h-full object-cover"
-          />
-        </AnimatePresence>
-
-        {/* OVERLAY oscuro para contraste */}
-        <div className="absolute inset-0 img-overlay" />
-
-        {/* TEXTO CENTRAL — blanco controlado por .on-image en CSS */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-4 text-center pointer-events-none">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.7, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2"
+          >
+            <h1
+              className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-tight tracking-tight"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.9)" }}
             >
-              <h1
-                className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-tight tracking-tight"
-                style={{ textShadow: "0 2px 24px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.9)" }}
-              >
-                {slides[index].title}
-              </h1>
-              <p
-                className="text-lg md:text-2xl lg:text-3xl font-bold uppercase tracking-widest"
-                style={{ textShadow: "0 2px 16px rgba(0,0,0,0.7)" }}
-              >
-                {slides[index].subtitle}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-      </motion.div>
+              {slides[index].title}
+            </h1>
+            <p
+              className="text-lg md:text-2xl lg:text-3xl font-bold uppercase tracking-widest"
+              style={{ textShadow: "0 2px 16px rgba(0,0,0,0.7)" }}
+            >
+              {slides[index].subtitle}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </section>
   );
 }

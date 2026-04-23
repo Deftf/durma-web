@@ -14,6 +14,16 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Publicar altura del navbar como variable CSS global → Hero la consume
+    // En móvil = 0px (imagen cubre todo), en desktop = altura real del navbar
+    const updateNavH = () => {
+      const isMd = window.innerWidth >= 768;
+      const h = isMd ? (scrolled ? "4rem" : "6.5rem") : "0px";
+      document.documentElement.style.setProperty("--navbar-h", h);
+    };
+    updateNavH();
+    window.addEventListener("resize", updateNavH);
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       if (menuOpen) setMenuOpen(false);
@@ -36,6 +46,7 @@ export default function Navbar() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateNavH);
       observer.disconnect();
     };
   }, [menuOpen]);
